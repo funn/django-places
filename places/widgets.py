@@ -14,7 +14,10 @@ class PlacesWidget(widgets.MultiWidget):
     def __init__(self, attrs=None):
         _widgets = (
             widgets.TextInput(
-                attrs={'data-geo': 'place_id', 'data-id': 'map_place_id'}
+                attrs={'data-geo': 'place_id', 'data-id': 'map_place_id', 'readonly': 'true', 'disabled': 'true', 'placeholder': _('Place ID')}
+            ),
+            widgets.TextInput(
+                attrs={'data-geo': 'name', 'data-id': 'map_name', 'readonly': 'true', 'disabled': 'true', 'placeholder': _('Place name')}
             ),
             widgets.TextInput(
                 attrs={'data-geo': 'formatted_address', 'data-id': 'map_place'}
@@ -40,7 +43,7 @@ class PlacesWidget(widgets.MultiWidget):
         if isinstance(value, six.text_type):
             return value.rsplit(',')
         if value:
-            return [value.place, value.latitude, value.longitude]
+            return [value.place_id, value.name, value.latitude, value.longitude]
         return [None, None]
 
     def get_context(self, name, value, attrs):

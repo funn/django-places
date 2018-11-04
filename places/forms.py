@@ -13,6 +13,7 @@ class PlacesField(forms.MultiValueField):
     def __init__(self, *args, **kwargs):
         fields = (
             forms.CharField(label=_('place_id')),
+            forms.CharField(label=_('name')),
             forms.CharField(label=_('place')),
             forms.DecimalField(label=_('Latitude')),
             forms.DecimalField(label=_('Longitude')),

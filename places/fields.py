@@ -28,7 +28,7 @@ class PlacesField(models.Field):
         if isinstance(value, Places):
             return value
         if isinstance(value, list):
-            return Places(value[0], value[1], value[2], value[3])
+            return Places(value[0], value[1], value[2], value[3], value[4])
 
         value_parts = [Decimal(val) for val in value.split(',')[-2:]]
 
@@ -42,11 +42,11 @@ class PlacesField(models.Field):
         except IndexError:
             longitude = '0.0'
         try:
-            place_id, place = ','.join(value.split(',')[:-2])
+            place_id, name, place = ','.join(value.split(',')[:-2])
         except:
             pass
 
-        return Places(place_id, place, latitude, longitude)
+        return Places(place_id, name, place, latitude, longitude)
 
     def from_db_value(self, value, expression, connection, context):
         return self.to_python(value)

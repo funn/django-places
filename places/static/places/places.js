@@ -1,9 +1,10 @@
 function setupDjangoPlaces(mapConfig, markerConfig, childs) {
-  var place_id = childs[0]
-  var latInput = childs[2];
-  var lngInput = childs[3];
-  var searchBox = new google.maps.places.SearchBox(childs[1]);
-  var gmap = new google.maps.Map(childs[4], mapConfig);
+  var place_id = childs[0];
+  var name = childs[1];
+  var latInput = childs[3];
+  var lngInput = childs[4];
+  var searchBox = new google.maps.places.SearchBox(childs[2]);
+  var gmap = new google.maps.Map(childs[5], mapConfig);
   var marker = new google.maps.Marker(markerConfig);
 
   if (latInput.value && lngInput.value) {
@@ -36,6 +37,7 @@ function setupDjangoPlaces(mapConfig, markerConfig, childs) {
       latInput.value = place.geometry.location.lat();
       lngInput.value = place.geometry.location.lng();
       place_id.value = place.place_id;
+      name.value = place.name;
       gmap.setCenter(place.geometry.location);
       gmap.setZoom(16);
     });
