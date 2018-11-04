@@ -14,6 +14,9 @@ class PlacesWidget(widgets.MultiWidget):
     def __init__(self, attrs=None):
         _widgets = (
             widgets.TextInput(
+                attrs={'data-geo': 'place_id', 'data-id': 'map_place_id'}
+            ),
+            widgets.TextInput(
                 attrs={'data-geo': 'formatted_address', 'data-id': 'map_place'}
             ),
             widgets.TextInput(

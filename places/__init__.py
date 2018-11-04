@@ -15,13 +15,14 @@ __version__ = '3.1.0'
 
 
 class Places(object):
-    def __init__(self, place, latitude, longitude):
+    def __init__(self, place_id, place, latitude, longitude):
 
         if isinstance(latitude, float) or isinstance(latitude, int):
             latitude = str(latitude)
         if isinstance(longitude, float) or isinstance(longitude, int):
             longitude = str(longitude)
 
+        self.place_id = place_id
         self.place = place
         self.latitude = Decimal(latitude)
         self.longitude = Decimal(longitude)
