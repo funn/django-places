@@ -1,10 +1,7 @@
-from __future__ import unicode_literals
-
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from .widgets import PlacesWidget
-from . import Places
 
 
 class PlacesField(forms.MultiValueField):
@@ -18,8 +15,6 @@ class PlacesField(forms.MultiValueField):
             forms.DecimalField(label=_('Latitude')),
             forms.DecimalField(label=_('Longitude')),
         )
-        if 'initial' in kwargs:
-            kwargs['initial'] = Places(*kwargs['initial'].split(','))
         self.widget = PlacesWidget()
         super(PlacesField, self).__init__(fields, **kwargs)
 
@@ -30,5 +25,5 @@ class PlacesField(forms.MultiValueField):
 
     def compress(self, value_list):
         if value_list:
-            return value_list
-        return ""
+            return dict(place_id=value_list[0], name=value_list[1], place=value_list[2], latitude=value_list[3], longitude=value_list[4])
+        return dict()
